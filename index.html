@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMDB & CSDM Certification Prep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HOME SCREEN
+════════════════════════════════════════════ -->
+<div id="homeScreen">
+
+    <h1>CMDB &amp; CSDM Exam Prep</h1>
+    <h3>ServiceNow CIS Certification Practice</h3>
+
+    <div style="margin:28px 0 20px; background:#161616; border-radius:12px; padding:18px 24px; text-align:left; border:1px solid #222;">
+        <p style="font-size:13px; color:#888; text-align:center; margin-bottom:14px;">Question bank breakdown</p>
+
+        <div style="display:flex; justify-content:center; gap:28px; flex-wrap:wrap;">
+            <div style="text-align:center;">
+                <div style="font-size:22px; font-weight:bold; color:#90caf9;">213</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">Single choice</div>
+            </div>
+
+            <div style="text-align:center;">
+                <div style="font-size:22px; font-weight:bold; color:#69f0ae;">54</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">Multi-select</div>
+            </div>
+
+            <div style="text-align:center;">
+                <div style="font-size:22px; font-weight:bold; color:#ffcc80;">19</div>
+                <div style="font-size:11px; color:#666; margin-top:2px;">Drag &amp; Drop</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="margin-top:0;">Number of Questions</h3>
+
+    <select id="questionCount">
+        <option value="10">10 — Quick (min. 2 multi, 1 drag)</option>
+        <option value="25" selected>25 — Short (min. 5 multi, 2 drag)</option>
+        <option value="50">50 — Medium (min. 10 multi, 4 drag)</option>
+        <option value="75">75 — Full exam (min. 15 multi, 6 drag)</option>
+        <option value="100">100 — Extended (min. 20 multi, 8 drag)</option>
+    </select>
+
+    <div class="options">
+        <label>
+            <input type="checkbox" id="shuffleQuestions" checked>
+            Shuffle Questions
+        </label>
+
+        <label>
+            <input type="checkbox" id="shuffleAnswers" checked>
+            Shuffle Answers
+        </label>
+    </div>
+
+    <button onclick="startExam()">▶ Start Exam</button>
+
+    <br>
+
+    <button
+        onclick="openSecretPage()"
+        style="
+        margin-top:14px;
+        background:#1a1a1a;
+        color:#777;
+        border:1px solid #222;
+        font-size:13px;
+        padding:8px 18px;">
+        Developer Resources
+    </button>
+
+    <p style="font-size:12px; color:#444; margin-top:24px;">
+        60 minute exam timer — manage your time across all questions
+    </p>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     EXAM SCREEN
+════════════════════════════════════════════ -->
+<div id="examScreen" style="display:none;">
+
+    <div class="topbar">
+        <div id="progress"></div>
+
+        <div class="timer-wrap">
+            <span class="timer-label">Time Left</span>
+            <div id="timer"></div>
+        </div>
+    </div>
+
+    <h2 id="question"></h2>
+
+    <span id="questionType" class="q-type-badge single"></span>
+
+    <div id="answers"></div>
+
+    <div id="answerFeedback" class="feedback"></div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     RESULT SCREEN
+════════════════════════════════════════════ -->
+<div id="resultScreen" style="display:none;">
+
+    <h1>Exam Complete</h1>
+
+    <h2 id="score"></h2>
+
+    <div style="text-align:center; margin-bottom:24px;">
+        <button onclick="restartExam()">🔄 Try Again</button>
+    </div>
+
+    <div id="review"></div>
+
+    <div style="text-align:center; margin-top:30px;">
+        <button onclick="restartExam()">🔄 Try Again</button>
+    </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SECRET LOADING SCREEN
+════════════════════════════════════════════ -->
+<div id="loadingScreen" style="display:none; text-align:center; padding-top:140px;">
+
+    <h1>🔒 Accessing Hidden Resources</h1>
+
+    <h3 style="margin-top:25px;">
+        Decrypting files...
+    </h3>
+
+    <div id="loadingText"
+         style="font-size:26px; margin-top:30px; color:#90caf9;">
+        0%
+    </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BIRTHDAY SCREEN
+════════════════════════════════════════════ -->
+
+
+<div id="birthdayScreen" style="display:none;">
+
+    <video id="bgVideo" loop playsinline>
+        <source src="birthday_intro.mp4" type="video/mp4">
+    </video>
+
+    <div id="birthdayContent">
+
+        <div class="balloon" style="left:5%; animation-duration:11s;">🎈</div>
+        <div class="balloon" style="left:20%; animation-duration:9s;">🎈</div>
+        <div class="balloon" style="left:35%; animation-duration:13s;">🎈</div>
+        <div class="balloon" style="left:50%; animation-duration:10s;">🎈</div>
+        <div class="balloon" style="left:65%; animation-duration:12s;">🎈</div>
+        <div class="balloon" style="left:80%; animation-duration:8s;">🎈</div>
+        <div class="balloon" style="left:92%; animation-duration:14s;">🎈</div>
+
+        <h1>🎉 HAPPY BIRTHDAY JIRE 🎉</h1>
+
+        <div style="font-size:90px;margin:25px 0;">
+            🎂 🎈 🎁
+        </div>
+
+        <button onclick="showVideo()">
+            🎁 Click For Special Surprise
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════
+     VIDEO MODAL
+════════════════════════════════════════════ -->
+<div id="videoModal"
+     style="
+     display:none;
+     position:fixed;
+     top:0;
+     left:0;
+     width:100%;
+     height:100%;
+     background:rgba(0,0,0,.92);
+     z-index:9999;
+     text-align:center;
+     ">
+
+    <button
+        onclick="closeVideo()"
+        style="
+        position:absolute;
+        top:20px;
+        right:20px;">
+        ✖
+    </button>
+
+    <div style="margin-top:60px;">
+
+        <video
+            id="birthdayVideo"
+            controls
+            width="80%">
+
+            <source src="special.mp4" type="video/mp4">
+
+        </video>
+
+    </div>
+
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+
+<script>
+
+function openSecretPage() {
+
+    document.getElementById("homeScreen").style.display = "none";
+
+    document.getElementById("loadingScreen").style.display = "block";
+
+    let percent = 0;
+
+    const loadingText = document.getElementById("loadingText");
+
+    const interval = setInterval(() => {
+
+        percent += 5;
+
+        loadingText.innerText = percent + "%";
+
+        if(percent >= 100){
+
+            clearInterval(interval);
+
+            setTimeout(() => {
+
+                document.getElementById("loadingScreen").style.display = "none";
+
+                document.getElementById("birthdayScreen").style.display = "block";
+		const bgVideo = document.getElementById("bgVideo");
+
+    bgVideo.muted = false;
+    bgVideo.volume = 1;
+
+    bgVideo.play().catch(err => {
+        console.log(err);
+    });	
+
+            }, 700);
+        }
+
+    }, 80);
+}
+
+function showVideo(){
+
+    // Pause background birthday video
+    const bgVideo = document.getElementById("bgVideo");
+    bgVideo.pause();
+
+    document.getElementById("videoModal").style.display = "block";
+
+    const surpriseVideo = document.getElementById("birthdayVideo");
+
+    surpriseVideo.currentTime = 0;
+    surpriseVideo.play();
+}
+
+function closeVideo(){
+
+    const surpriseVideo = document.getElementById("birthdayVideo");
+
+    surpriseVideo.pause();
+
+    document.getElementById("videoModal").style.display = "none";
+
+    // Resume background birthday video
+    const bgVideo = document.getElementById("bgVideo");
+    bgVideo.play();
+}
+
+</script>
+
+</body>
+</html>
